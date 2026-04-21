@@ -1,0 +1,122 @@
+[
+  {
+    "id": "ck-01",
+    "category": "Technical",
+    "item": "Model accuracy ≥ 85% AUC on held-out validation set",
+    "status": "Pass",
+    "owner": "Dr. Priya Nair",
+    "evidence": "Validation report v2.3 — AUC 0.87, F1 0.83 (demographic breakdown attached)"
+  },
+  {
+    "id": "ck-02",
+    "category": "Technical",
+    "item": "EHR integration end-to-end UAT passed with zero P1 defects",
+    "status": "Pending",
+    "owner": "Marcus Chen",
+    "evidence": "UAT in progress on sandbox; production UAT blocked pending credentials"
+  },
+  {
+    "id": "ck-03",
+    "category": "Technical",
+    "item": "Load testing completed at 500 concurrent users with <2s P95 latency",
+    "status": "Fail",
+    "owner": "Marcus Chen",
+    "evidence": "Load test Wk 4: 23% timeout rate at 420+ concurrent users — remediation in progress"
+  },
+  {
+    "id": "ck-04",
+    "category": "Technical",
+    "item": "Production monitoring dashboards and alerting live",
+    "status": "Pass",
+    "owner": "Ravi Shankar",
+    "evidence": "Grafana dashboard deployed; PagerDuty alerts configured and tested"
+  },
+  {
+    "id": "ck-05",
+    "category": "Clinical Safety",
+    "item": "Clinical validation protocol approved by Chief Medical Officer",
+    "status": "Pass",
+    "owner": "Dr. Amara Joffe",
+    "evidence": "CMO sign-off received Wk 3 — validation protocol v1.4"
+  },
+  {
+    "id": "ck-06",
+    "category": "Clinical Safety",
+    "item": "Physician champion review and sign-off on model outputs",
+    "status": "Pending",
+    "owner": "Dr. Amara Joffe",
+    "evidence": "Review workshop scheduled Wk 5 — model card distributed to physician panel"
+  },
+  {
+    "id": "ck-07",
+    "category": "Clinical Safety",
+    "item": "Patient consent and opt-out workflow validated end-to-end",
+    "status": "Pass",
+    "owner": "Leila Torres",
+    "evidence": "Consent flow UAT passed Wk 3 — tested across SMS, email, and portal channels"
+  },
+  {
+    "id": "ck-08",
+    "category": "Compliance",
+    "item": "HIPAA Security Risk Assessment completed and findings remediated",
+    "status": "Pass",
+    "owner": "James Okafor",
+    "evidence": "SRA report finalized Wk 2 — 2 medium findings remediated, no high/critical"
+  },
+  {
+    "id": "ck-09",
+    "category": "Compliance",
+    "item": "PHI data flows fully documented and reviewed by DPO",
+    "status": "Pass",
+    "owner": "James Okafor",
+    "evidence": "Data flow diagram v3 approved by DPO and legal Wk 3"
+  },
+  {
+    "id": "ck-10",
+    "category": "Compliance",
+    "item": "Business Associate Agreements executed with all PHI-handling vendors",
+    "status": "Pass",
+    "owner": "James Okafor",
+    "evidence": "BAA executed: Epic (Wk 2), Microsoft Azure (Wk 2), Twilio (Wk 2)"
+  },
+  {
+    "id": "ck-11",
+    "category": "Legal",
+    "item": "AI liability and indemnification agreement signed with hospital legal",
+    "status": "Pending",
+    "owner": "James Okafor",
+    "evidence": "Contract in legal review — expected execution Wk 5"
+  },
+  {
+    "id": "ck-12",
+    "category": "Legal",
+    "item": "Data processing agreement finalized and executed",
+    "status": "Pass",
+    "owner": "James Okafor",
+    "evidence": "DPA v2 executed by both parties Wk 3"
+  },
+  {
+    "id": "ck-13",
+    "category": "Operations",
+    "item": "Rollback procedure documented, tested, and approved by engineering lead",
+    "status": "Pass",
+    "owner": "Marcus Chen",
+    "evidence": "Rollback runbook v2 tested in staging Wk 3 — full restore in 8 minutes"
+  },
+  {
+    "id": "ck-14",
+    "category": "Operations",
+    "item": "Staff training completion rate ≥ 90% across all pilot clinic units",
+    "status": "Pending",
+    "owner": "Diana Walsh",
+    "evidence": "Currently 35% complete — training program runs Wk 4-7"
+  },
+  {
+    "id": "ck-15",
+    "category": "Operations",
+    "item": "AI system SLA defined, agreed by stakeholders, and baseline established",
+    "status": "Pass",
+    "owner": "Sarah Okonkwo",
+    "evidence": "SLA agreed: 95% responses <2s, 99.9% uptime, 24h incident response — signed Wk 3"
+  }
+]
