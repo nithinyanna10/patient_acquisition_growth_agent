@@ -104,27 +104,3 @@ ui/                         # One module per page
 utils/helpers.py            # Shared utilities
 docs/                       # Standalone delivery documents
 ```
-
----
-
-## AI Workflow Note
-
-**Tools used:** Claude (Anthropic) via Claude Code CLI
-
-**What AI accelerated**
-- Scaffolding the full module structure (24 files) in a single session rather than across multiple hours
-- Generating boilerplate: dataclasses, JSON seed data, Streamlit layout code
-- Producing the initial working prototype fast enough to spend most time on refinement, not construction
-- Drafting the sample status update and README copy from structured context already in the session
-
-**What was mine**
-- The core design decisions: weighted scoring over manual RAG, status multipliers on workstream progress, RAID category discrimination, critical-fail override logic
-- The upgrade strategy: recognising that the gap between a dashboard and a decision tool was the absence of resolution impact analysis — and specifying that it should rerun the scoring engine rather than use hardcoded estimates
-- The data architecture: what realistic hospital implementation data looks like, which blockers to include, what the dependency chain should be, and calibrating the score to land at a credible AMBER
-- Editorial judgment on every output: what to cut, what to tighten, what copy signals delivery maturity vs. generic PM language
-- The demo narrative: how to sequence the walkthrough so each page answers the question the previous one raises
-
-**How I think about this**
-
-AI removed the tax of typing. It did not remove the need to know what to build, why the architecture is stronger than the alternative, or how a senior delivery lead thinks about risk exposure and go/no-go decisions. The tool is only as good as the framing it was given — and the framing was the work.
-# patient_acquisition_growth_agent
