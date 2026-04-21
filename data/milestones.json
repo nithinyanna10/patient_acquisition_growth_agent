@@ -1,0 +1,110 @@
+[
+  {
+    "id": "ms-01",
+    "name": "Discovery & Requirements Sign-off",
+    "due_week": 1,
+    "status": "Complete",
+    "owner": "Sarah Okonkwo",
+    "workstream_id": "ws-01",
+    "depends_on": []
+  },
+  {
+    "id": "ms-02",
+    "name": "Data Pipeline Architecture Setup",
+    "due_week": 2,
+    "status": "Complete",
+    "owner": "Ravi Shankar",
+    "workstream_id": "ws-06",
+    "depends_on": ["ms-01"]
+  },
+  {
+    "id": "ms-03",
+    "name": "Data Governance & PHI Framework Approved",
+    "due_week": 2,
+    "status": "Complete",
+    "owner": "James Okafor",
+    "workstream_id": "ws-05",
+    "depends_on": ["ms-01"]
+  },
+  {
+    "id": "ms-04",
+    "name": "AI Model v1 Training Complete",
+    "due_week": 3,
+    "status": "Complete",
+    "owner": "Dr. Priya Nair",
+    "workstream_id": "ws-01",
+    "depends_on": ["ms-02", "ms-03"]
+  },
+  {
+    "id": "ms-05",
+    "name": "Epic Production Credentials Received",
+    "due_week": 3,
+    "status": "Slipped",
+    "owner": "Marcus Chen",
+    "workstream_id": "ws-02",
+    "depends_on": []
+  },
+  {
+    "id": "ms-06",
+    "name": "EHR Integration UAT Passed",
+    "due_week": 4,
+    "status": "At Risk",
+    "owner": "Marcus Chen",
+    "workstream_id": "ws-02",
+    "depends_on": ["ms-05"]
+  },
+  {
+    "id": "ms-07",
+    "name": "Clinical Validation Protocol Approved",
+    "due_week": 4,
+    "status": "On Track",
+    "owner": "Dr. Amara Joffe",
+    "workstream_id": "ws-03",
+    "depends_on": ["ms-03"]
+  },
+  {
+    "id": "ms-08",
+    "name": "Model Clinical Validation Complete",
+    "due_week": 5,
+    "status": "At Risk",
+    "owner": "Dr. Amara Joffe",
+    "workstream_id": "ws-03",
+    "depends_on": ["ms-06", "ms-07"]
+  },
+  {
+    "id": "ms-09",
+    "name": "Patient Journey Automation Design Approved",
+    "due_week": 5,
+    "status": "At Risk",
+    "owner": "Leila Torres",
+    "workstream_id": "ws-04",
+    "depends_on": ["ms-07"]
+  },
+  {
+    "id": "ms-10",
+    "name": "Compliance & Regulatory Sign-off",
+    "due_week": 6,
+    "status": "On Track",
+    "owner": "James Okafor",
+    "workstream_id": "ws-05",
+    "depends_on": ["ms-08"]
+  },
+  {
+    "id": "ms-11",
+    "name": "Staff Training & Certification Complete (≥90%)",
+    "due_week": 7,
+    "status": "On Track",
+    "owner": "Diana Walsh",
+    "workstream_id": "ws-07",
+    "depends_on": ["ms-09"]
+  },
+  {
+    "id": "ms-12",
+    "name": "Production Go-Live",
+    "due_week": 8,
+    "status": "On Track",
+    "owner": "Sarah Okonkwo",
+    "workstream_id": "ws-01",
+    "depends_on": ["ms-10", "ms-11"]
+  }
+]
