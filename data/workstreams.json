@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ws-01",
+    "name": "AI Model Development",
+    "owner": "Dr. Priya Nair",
+    "status": "At Risk",
+    "progress": 72,
+    "priority": "Critical",
+    "blocker": "Missing labeled training data for Hispanic/Black patient cohorts — retraining blocked"
+  },
+  {
+    "id": "ws-02",
+    "name": "EHR Integration",
+    "owner": "Marcus Chen",
+    "status": "At Risk",
+    "progress": 68,
+    "priority": "Critical",
+    "blocker": "Production Epic credentials delayed 2 weeks — UAT on sandbox only"
+  },
+  {
+    "id": "ws-03",
+    "name": "Clinical Validation",
+    "owner": "Dr. Amara Joffe",
+    "status": "On Track",
+    "progress": 60,
+    "priority": "High",
+    "blocker": null
+  },
+  {
+    "id": "ws-04",
+    "name": "Patient Journey Automation",
+    "owner": "Leila Torres",
+    "status": "At Risk",
+    "progress": 55,
+    "priority": "High",
+    "blocker": "UX prototype pending clinical ops sign-off — automation triggers not finalized"
+  },
+  {
+    "id": "ws-05",
+    "name": "Compliance & Privacy",
+    "owner": "James Okafor",
+    "status": "On Track",
+    "progress": 80,
+    "priority": "Critical",
+    "blocker": null
+  },
+  {
+    "id": "ws-06",
+    "name": "Reporting & Analytics",
+    "owner": "Ravi Shankar",
+    "status": "On Track",
+    "progress": 90,
+    "priority": "Medium",
+    "blocker": null
+  },
+  {
+    "id": "ws-07",
+    "name": "Staff Training & Change Management",
+    "owner": "Diana Walsh",
+    "status": "On Track",
+    "progress": 30,
+    "priority": "High",
+    "blocker": null
+  }
+]
