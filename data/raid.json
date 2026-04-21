@@ -1,0 +1,200 @@
+[
+  {
+    "id": "risk-01",
+    "category": "Risk",
+    "title": "Epic EHR API Rate Limiting in Production",
+    "description": "Production Epic FHIR API enforces a 60 req/min rate limit per app registration. Real-time patient matching at peak hours may exceed this threshold, causing inference latency or dropped requests.",
+    "severity": "High",
+    "urgency": "This Sprint",
+    "owner": "Marcus Chen",
+    "mitigation": "Implement request queuing with exponential backoff. Explore Epic bulk data API for batch nightly pre-scoring. Engage Epic technical account manager for rate limit increase request.",
+    "status": "Open"
+  },
+  {
+    "id": "risk-02",
+    "category": "Risk",
+    "title": "Demographic Bias in Patient Acquisition Model",
+    "description": "Initial holdout validation shows 12% lower recall for Hispanic and Black patient cohorts compared to overall population. Deploying without remediation would perpetuate health equity disparities.",
+    "severity": "High",
+    "urgency": "Immediate",
+    "owner": "Dr. Priya Nair",
+    "mitigation": "Augment training set with stratified SMOTE oversampling for underrepresented cohorts. Add per-demographic fairness metrics to model card. Require CMO sign-off on bias report before pilot launch.",
+    "status": "Open"
+  },
+  {
+    "id": "risk-03",
+    "category": "Risk",
+    "title": "PHI Misclassification in Free-Text EHR Fields",
+    "description": "De-identification pipeline was validated against structured fields only. Free-text clinical notes may contain unstructured PHI (indirect identifiers) not caught by current regex patterns.",
+    "severity": "Critical",
+    "urgency": "This Week",
+    "owner": "James Okafor",
+    "mitigation": "Deployed NLP-based PHI scanner (Presidio + custom rules) on Wk 3. Re-processed all training data through enhanced pipeline. Compliance team confirmed controls acceptable for pilot scope.",
+    "status": "Mitigated"
+  },
+  {
+    "id": "risk-04",
+    "category": "Risk",
+    "title": "Staff Adoption Resistance to AI Scheduling",
+    "description": "Scheduling coordinators have expressed concern about AI 'overriding' their judgment. Without adoption, the agent's recommendations will be ignored, yielding no conversion uplift.",
+    "severity": "Medium",
+    "urgency": "This Sprint",
+    "owner": "Diana Walsh",
+    "mitigation": "Embed clinical change champions in 3 pilot clinic units. Position AI as decision-support, not automation. Redesign UX to show confidence scores and override controls prominently.",
+    "status": "Open"
+  },
+  {
+    "id": "risk-05",
+    "category": "Risk",
+    "title": "Third-Party Referral Portal API Deprecation",
+    "description": "External referral management vendor (ReferralMD) deprecated v1 API with 60-day notice. v2 migration is not in current project scope, risking broken referral ingestion at go-live.",
+    "severity": "Medium",
+    "urgency": "This Sprint",
+    "owner": "Marcus Chen",
+    "mitigation": "Evaluate direct database polling as tactical fallback. Raised as scope change with client sponsor. v2 adapter estimated at 3 engineer-days — under review for Wk 5 inclusion.",
+    "status": "Open"
+  },
+  {
+    "id": "risk-06",
+    "category": "Risk",
+    "title": "Vendor SLA Breach During Peak Patient Intake Hours",
+    "description": "Cloud inference endpoint SLA is 99.5%. During Monday 8-10AM patient intake surge, historical patterns show 3-4x normal load — SLA may not hold.",
+    "severity": "Medium",
+    "urgency": "Monitor",
+    "owner": "Ravi Shankar",
+    "mitigation": "Auto-scaling group configured with min 3 replicas. Load test at 2x peak scheduled Wk 5. Alerting dashboard live with PagerDuty integration.",
+    "status": "Mitigated"
+  },
+  {
+    "id": "assump-01",
+    "category": "Assumption",
+    "title": "Epic Sandbox Remains Stable Through UAT",
+    "description": "We assume Epic's UAT sandbox environment will remain available and representative of production behavior throughout Wk 4-5 integration testing.",
+    "severity": "Medium",
+    "urgency": "Monitor",
+    "owner": "Marcus Chen",
+    "mitigation": "Monitor Epic support tickets. Mock server built as offline fallback for unit tests. Sandbox outage contingency: extend UAT window by 3 days.",
+    "status": "Open"
+  },
+  {
+    "id": "assump-02",
+    "category": "Assumption",
+    "title": "Clinical Team 20% Time Allocation for Validation",
+    "description": "Dr. Joffe's team will maintain 20% time availability for model validation workshops and sign-off activities in Wk 5-6.",
+    "severity": "High",
+    "urgency": "This Sprint",
+    "owner": "Dr. Amara Joffe",
+    "mitigation": "Calendar blocks confirmed by CMO. Validation activities condensed into structured 4-hour sessions rather than ad-hoc reviews. Backup reviewer identified.",
+    "status": "Open"
+  },
+  {
+    "id": "assump-03",
+    "category": "Assumption",
+    "title": "HIPAA BAA Executed Before Patient Data Enters Pilot",
+    "description": "All Business Associate Agreements with cloud infrastructure and SaaS vendors must be signed before any live patient data is processed.",
+    "severity": "Critical",
+    "urgency": "Monitor",
+    "owner": "James Okafor",
+    "mitigation": "BAA executed with Epic, Azure, and Twilio on Wk 2. Verified by legal team. No additional vendors planned.",
+    "status": "Closed"
+  },
+  {
+    "id": "assump-04",
+    "category": "Assumption",
+    "title": "IT Firewall Allows Outbound API Calls to Cloud Endpoints",
+    "description": "We assume hospital IT will permit outbound HTTPS calls to Azure inference endpoints without requiring VPN tunneling, which would add 80-120ms latency per call.",
+    "severity": "High",
+    "urgency": "This Week",
+    "owner": "Marcus Chen",
+    "mitigation": "IT architecture review meeting scheduled Wk 4. VPN-compatible inference path built as contingency. Latency budget analysis completed — VPN path still within acceptable SLA.",
+    "status": "Open"
+  },
+  {
+    "id": "issue-01",
+    "category": "Issue",
+    "title": "Epic Production Credentials Delivery Delayed 2 Weeks",
+    "description": "Hospital IT procurement process requires a separate vendor approval workflow for Epic production credentials. This was not scoped in the project plan, causing a 2-week slip on EHR integration milestone.",
+    "severity": "High",
+    "urgency": "Immediate",
+    "owner": "Marcus Chen",
+    "mitigation": "CTO escalation submitted Wk 3. IT procurement fast-track process initiated. Credentials expected Wk 5. UAT proceeding on sandbox in parallel to minimize schedule impact.",
+    "status": "Open"
+  },
+  {
+    "id": "issue-02",
+    "category": "Issue",
+    "title": "Patient Journey State Map 30% Incomplete",
+    "description": "Clinical operations team has not finalized 11 of 38 patient touchpoints needed to trigger automation rules. Automation workstream cannot proceed to build until map is complete.",
+    "severity": "Medium",
+    "urgency": "This Week",
+    "owner": "Leila Torres",
+    "mitigation": "Facilitated workshop scheduled with clinical ops for Wk 4. Identified clinical ops liaison to own the remaining touchpoint definitions. Automation build can proceed in parallel on 27 confirmed triggers.",
+    "status": "Open"
+  },
+  {
+    "id": "issue-03",
+    "category": "Issue",
+    "title": "28% of Historical Appointment Data Missing (2019-2021)",
+    "description": "Data warehouse migration from legacy system omitted appointment records from 3 fiscal years. Model trained on incomplete history may underperform for seasonal patterns.",
+    "severity": "High",
+    "urgency": "This Week",
+    "owner": "Ravi Shankar",
+    "mitigation": "Backfill process initiated from archived system; 60% recovered as of Wk 4. Model retrain scheduled once full dataset available. Interim model validated acceptable (AUC 0.87) on available data.",
+    "status": "Closed"
+  },
+  {
+    "id": "issue-04",
+    "category": "Issue",
+    "title": "Development VM Provisioning Delayed by IT Approval Queue",
+    "description": "Developer VMs took 10 business days to provision due to IT security review backlog. Engineers worked on local environments for Wk 1-2.",
+    "severity": "Low",
+    "urgency": "Monitor",
+    "owner": "Marcus Chen",
+    "mitigation": "VMs provisioned Wk 2. No net impact on delivery timeline. Pre-approved VM templates created for future provisioning requests.",
+    "status": "Closed"
+  },
+  {
+    "id": "dep-01",
+    "category": "Dependency",
+    "title": "Epic API Sandbox & Production Access",
+    "description": "Full read/write Epic FHIR API access is required for EHR integration UAT. Sandbox granted Wk 2; production access dependent on IT procurement.",
+    "severity": "Critical",
+    "urgency": "Immediate",
+    "owner": "Marcus Chen",
+    "mitigation": "Sandbox access in use for UAT. Production access escalation in progress. Contingency: extend integration UAT window by 1 week if credentials arrive Wk 5.",
+    "status": "Open"
+  },
+  {
+    "id": "dep-02",
+    "category": "Dependency",
+    "title": "HIPAA Business Associate Agreement Execution",
+    "description": "Signed BAA required with all vendors processing PHI before live patient data can enter any environment.",
+    "severity": "High",
+    "urgency": "Monitor",
+    "owner": "James Okafor",
+    "mitigation": "Completed Wk 2. Documented and filed with compliance team.",
+    "status": "Closed"
+  },
+  {
+    "id": "dep-03",
+    "category": "Dependency",
+    "title": "Hospital InfoSec Cloud Architecture Review",
+    "description": "Information Security team must formally approve cloud infrastructure design (Azure VNet, IAM roles, encryption at rest/transit) before production provisioning can begin.",
+    "severity": "High",
+    "urgency": "This Week",
+    "owner": "James Okafor",
+    "mitigation": "Review in progress. Preliminary feedback positive. Expected approval by end of Wk 4. All infrastructure held in staging until approval granted.",
+    "status": "Open"
+  },
+  {
+    "id": "dep-04",
+    "category": "Dependency",
+    "title": "Executive Sponsor Go-Live Date Confirmation",
+    "description": "CTO must formally confirm the Wk 8 go-live date before launch communications are drafted and distributed to staff and patients.",
+    "severity": "Medium",
+    "urgency": "This Sprint",
+    "owner": "Sarah Okonkwo",
+    "mitigation": "Steering committee meeting scheduled for Wk 4. Go/no-go readiness report will be presented. Date confirmation expected then.",
+    "status": "Open"
+  }
+]
