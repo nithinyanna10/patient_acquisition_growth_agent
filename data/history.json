@@ -1,0 +1,17 @@
+{
+  "week": 3,
+  "scores": {
+    "overall": 61.4,
+    "workstream": 53.1,
+    "milestone": 65.0,
+    "raid": 73.0,
+    "checklist": 53.3
+  },
+  "events": [
+    "EHR Credentials milestone status changed: On Track → Slipped (IT procurement delay)",
+    "PHI Misclassification risk mitigated — NLP-based PHI scanner deployed",
+    "Load Testing checklist item changed: Pending → Fail (23% timeout rate at 400+ users)",
+    "Historical appointment data backfill issue closed (60% records recovered)",
+    "AI Model v1 Training milestone completed"
+  ]
+}
