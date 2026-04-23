@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 import streamlit as st
 
 import ui.checklist as checklist_page
+import ui.growth_agent as growth_agent_page
 import ui.milestones as milestones_page
 import ui.overview as overview_page
 import ui.post_launch_dashboard as post_launch_page
@@ -30,6 +31,7 @@ st.set_page_config(
 
 PAGES = {
     "Executive Overview": overview_page,
+    "Growth Agent Control Tower": growth_agent_page,
     "Workstream Health": workstreams_page,
     "Milestone Tracker": milestones_page,
     "RAID Dashboard": raid_page,
@@ -71,6 +73,8 @@ def main() -> None:
 
     if page_name == "Executive Overview":
         page.render(workstreams, milestones, raid_items, checklist, readiness, history)
+    elif page_name == "Growth Agent Control Tower":
+        page.render(workstreams, milestones, raid_items, checklist)
     elif page_name == "Workstream Health":
         page.render(workstreams)
     elif page_name == "Milestone Tracker":
