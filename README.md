@@ -2,7 +2,7 @@
 
 A delivery management prototype for a hospital AI implementation. Built as a take-home assignment for an AI Solutions Architect role.
 
-The focus is not building the AI agent. It is delivering it safely — through a real hospital environment, with real compliance gates, real clinical workflows, and real failure modes.
+The focus is not just building the AI agent. It is delivering it safely — through a real hospital environment, with real compliance gates, real clinical workflows, and real failure modes.
 
 ---
 
@@ -14,7 +14,7 @@ Current state: **64.6% AMBER** — progressing, but two active blockers and one 
 
 ---
 
-## Run It
+## Run It (Prototype UI)
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
@@ -22,7 +22,47 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-No API keys. No database. No auth. Runs entirely local.
+This mode is still available for quick local exploration.
+
+---
+
+## Production-Grade Stack
+
+This repository now includes a deployable backend stack:
+
+- FastAPI service for agent endpoints
+- PostgreSQL for persistent state
+- SQLAlchemy ORM + Alembic migrations
+- Seed pipeline from `data/*.json` into SQL
+- Docker Compose orchestration for DB/API/UI
+
+### Services
+
+- API: `http://localhost:8000`
+- API health: `http://localhost:8000/v1/health`
+- Growth agent brief endpoint: `http://localhost:8000/v1/agent/brief`
+- Streamlit UI: `http://localhost:8501`
+
+### Run with Docker
+
+```bash
+cp .env.example .env
+docker compose up --build
+```
+
+The API container runs migrations and seeds the database on startup.
+
+### Run API Locally (without Docker)
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r backend/requirements.txt
+cp .env.example .env
+cd backend
+alembic upgrade head
+python scripts/seed_db.py
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
 
 ---
 
@@ -44,9 +84,11 @@ No API keys. No database. No auth. Runs entirely local.
 
 ## What the Prototype Does
 
-Seven pages, each serving a distinct delivery function:
+Eight pages, each serving a distinct delivery function:
 
 **Executive Overview** — Weighted readiness score with a launch decision (GO / NO-GO), status drivers, highest-impact actions ranked by score delta, and week-over-week trend.
+
+**Growth Agent Control Tower** — A sophisticated execution copilot that converts readiness signals into a ranked 72-hour action backlog, owner-specific command queues, autonomous escalation triggers, and an operating cadence for steering governance.
 
 **Workstream Health** — Progress across all seven delivery workstreams. At-risk workstreams are dampened in the scoring formula (×0.7); blocked workstreams further (×0.4). This is shown explicitly, not hidden.
 
@@ -91,6 +133,8 @@ Seven pages, each serving a distinct delivery function:
 
 **Scenario simulator.** Recomputes from first principles on every state change. No cached or hardcoded deltas.
 
+**Action intelligence layer.** The growth agent combines expected score impact with severity, urgency, and launch-blocking status to prioritize intervention sequences, not just report issues.
+
 ---
 
 ## Project Structure
@@ -103,4 +147,6 @@ scoring/readiness.py        # All scoring logic — weights, formulas, resolutio
 ui/                         # One module per page
 utils/helpers.py            # Shared utilities
 docs/                       # Standalone delivery documents
+backend/                    # Production backend (FastAPI + SQLAlchemy + Alembic)
+docker-compose.yml          # Multi-service orchestration (db + api + streamlit)
 ```
