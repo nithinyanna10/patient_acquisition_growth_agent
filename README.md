@@ -35,12 +35,20 @@ This repository now includes a deployable backend stack:
 - SQLAlchemy ORM + Alembic migrations
 - Seed pipeline from `data/*.json` into SQL
 - Docker Compose orchestration for DB/API/UI
+- JWT auth and RBAC (`admin`, `operator`, `viewer`)
+- Audit logging for privileged actions
+- Agent intelligence APIs (planner, simulator, recommendation memory)
+- Notifications queue and CSV export endpoints
+- Metrics endpoint (`/metrics`) and background scheduler heartbeat
+- Pytest suite + GitHub Actions CI workflow
 
 ### Services
 
 - API: `http://localhost:8000`
 - API health: `http://localhost:8000/v1/health`
 - Growth agent brief endpoint: `http://localhost:8000/v1/agent/brief`
+- OpenAPI docs: `http://localhost:8000/docs`
+- Prometheus metrics: `http://localhost:8000/metrics`
 - Streamlit UI: `http://localhost:8501`
 
 ### Run with Docker
@@ -51,6 +59,12 @@ docker compose up --build
 ```
 
 The API container runs migrations and seeds the database on startup.
+
+Default seeded users:
+
+- `admin@example.com` / `admin123`
+- `operator@example.com` / `operator123`
+- `viewer@example.com` / `viewer123`
 
 ### Run API Locally (without Docker)
 
@@ -149,4 +163,5 @@ utils/helpers.py            # Shared utilities
 docs/                       # Standalone delivery documents
 backend/                    # Production backend (FastAPI + SQLAlchemy + Alembic)
 docker-compose.yml          # Multi-service orchestration (db + api + streamlit)
+.github/workflows/          # CI for backend tests
 ```
