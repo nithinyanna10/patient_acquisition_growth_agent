@@ -84,8 +84,19 @@ def _load_checklist(db: Session) -> list[ChecklistItem]:
 
 
 def get_growth_brief(db: Session) -> dict:
+    workstreams, milestones, raid_items, checklist = load_domain_data(db)
+    brief = summarize_agent_brief(workstreams, milestones, raid_items, checklist)
+    brief["top_actions"] = [action.__dict__ for action in brief["top_actions"]]
+    brief["owner_queue"] = {
+        owner: [action.__dict__ for action in actions]
+        for owner, actions in brief["owner_queue"].items()
+    }
+    return brief
+
+
+def load_domain_data(db: Session):
     workstreams = _load_workstreams(db)
     milestones = _load_milestones(db)
     raid_items = _load_raid_items(db)
     checklist = _load_checklist(db)
-    return summarize_agent_brief(workstreams, milestones, raid_items, checklist)
+    return workstreams, milestones, raid_items, checklist
